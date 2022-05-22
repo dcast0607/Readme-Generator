@@ -17,6 +17,14 @@ const inquirer = require('inquirer');
 10) If you have any pictures you would like to add, please add a link to their file location here:
 */
 
+function inputValidation (value) {
+    if (value) {
+        return true;
+    } else {
+        return "I need a valid value!";
+    }
+}
+
 const confirmUserInput = 
 
 inquirer.prompt(
@@ -25,8 +33,8 @@ inquirer.prompt(
            type: 'input',
            message: 'Please enter the name of your project.',
            name: 'projectTitle',
-           //will call separate function to validate user input.
-        //    validate: confirmUserInput
+           //will call separate function to validate user input
+           validate: inputValidation,
        },
        {
         type: 'input',
@@ -38,64 +46,65 @@ inquirer.prompt(
         `,
         name: 'projectDescription',
         //will call separate function to validate user input.
-        // validate: confirmUserInput
+        validate: inputValidation,
         },
         {
             type: 'input',
             message: 'Please enter a table of contents: ',
             name: 'projectTableOfContents',
             //will call separate function to validate user input.
-            // validate: confirmUserInput
+            validate: inputValidation,
         },
         {
             type: 'input',
             message: 'Please enter any installation instructions: ',
             name: 'projectInstallationInstructions',
             //will call separate function to validate user input.
-            // validate: confirmUserInput
+            validate: inputValidation,
         },
         {
             type: 'input',
             message: 'Please enter any usage instructions: ',
             name: 'projectUsageInstructions',
             //will call separate function to validate user input.
-            // validate: confirmUserInput
+            validate: inputValidation,
         },
         {
             type: 'checkbox',
             message: 'Please select any relevant licenses: (Use the space key to select an option).',
-            choices: ['Javascript', 'NodeJS', 'CSS', 'HTML'],
+            choices: ['NPM', 'NodeJS', 'CSS', 'HTML'],
             name: 'projectLicense',
-            //will call separate function to validate user input.
-            // validate: confirmUserInput
         },
         {
             type: 'input',
             message: 'If there were any contributors that helped you with this project enter them here: ',
             name: 'projectContributors',
             //will call separate function to validate user input.
-            // validate: confirmUserInput
+            validate: inputValidation,
         },
         {
             type: 'input',
             message: 'Please enter any testing information here: ',
             name: 'projectTestingInformation',
             //will call separate function to validate user input.
-            // validate: confirmUserInput
+            validate: inputValidation,
         },
         {
             type: 'input',
             message: 'If you would like to include an FAQ section, please include that here: ',
             name: 'projectFAQSection',
             //will call separate function to validate user input.
-            // validate: confirmUserInput
+            validate: inputValidation,
         },
         {
             type: 'input',
-            message: 'If you would like to include any images, please add the directory path to the images here: ',
+            message: `
+            If you would like to include any images, please add the directory path to the images here: 
+            To add a screenshot, create an 'assets/images' folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+            `,
             name: 'projectImages',
             //will call separate function to validate user input.
-            // validate: confirmUserInput
+            validate: inputValidation,
         }
    ] 
 ).then( function(answers) {
@@ -106,7 +115,6 @@ inquirer.prompt(
     const convertedProjectInstallationInstructions = answers.projectInstallationInstructions;
     const convertedProjectUsageInstructions = answers.projectUsageInstructions;
     const convertedProjectLicense = answers.projectLicense;
-    const separatedProjectLicense = convertedProjectLicense.split(",")
     const convertedProjectContributors = answers.projectContributors;
     const convertedProjectTestingInformation = answers.projectTestingInformation;
     const convertedProjectFAQSection = answers.projectFAQSection;
@@ -129,7 +137,7 @@ ${convertedProjectInstallationInstructions}
 ${convertedProjectUsageInstructions}
 
 #### Project License Information
-${separatedProjectLicense}
+${convertedProjectLicense}
 
 #### Project Contributors
 ${convertedProjectContributors}
@@ -153,6 +161,5 @@ ${convertedProjectImages}
         console.log("The file was saved!");
     }
     });
-
 });
 

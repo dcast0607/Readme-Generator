@@ -121,6 +121,8 @@ inquirer.prompt(
     const convertedProjectImages = answers.projectImages;
 
     console.log(convertedAnswer);
+    
+
     const readMeTemplate = `
 ## *${convertedProjectTitle}*
 

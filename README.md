@@ -36,12 +36,12 @@ be used to generate our readme.
 
 ## Credits
 
-**Author:**
-Daniel Castro 
-**Github Link:**
-https://github.com/dcast0607
-**Repository Link:**
-https://github.com/dcast0607/Readme-Generator
+**Author:**  
+Daniel Castro   
+**Github Link:**  
+https://github.com/dcast0607  
+**Repository Link:**   
+https://github.com/dcast0607/Readme-Generator   
 
 ## License
 [NPM License](https://libraries.io/licenses/Artistic-2.0)
